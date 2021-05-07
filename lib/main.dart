@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/widgets/chart.dart';
 import 'package:flutter_complete_guide/widgets/new_transaction.dart';
 import 'package:flutter_complete_guide/widgets/transaction_list.dart';
 
@@ -43,12 +44,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction('t1', "Shoes", 249.99, DateTime.now()),
-    Transaction('t2', "Snacks", 6.49, DateTime.now()),
-    Transaction('t3', "Groceries", 36.99, DateTime.now()),
-    Transaction('t4', "T-shirt", 59.99, DateTime.now()),
-    Transaction('t5', "Uber eats", 35.99, DateTime.now()),
+    // Transaction('t1', "Shoes", 249.99, DateTime.now()),
+    // Transaction('t2', "Snacks", 6.49, DateTime.now()),
+    // Transaction('t3', "Groceries", 36.99, DateTime.now()),
+    // Transaction('t4', "T-shirt", 59.99, DateTime.now()),
+    // Transaction('t5', "Uber eats", 35.99, DateTime.now()),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions
+        .where((element) => element.dateTime
+            .isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
 
   void _addNewTransaction(String title, double amount) {
     final newTrans =
@@ -82,13 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Text("chart"),
-              elevation: 5,
-            ),
-          ),
+          Chart(_recentTransactions),
           TransactionList(_userTransactions),
         ],
       ),
