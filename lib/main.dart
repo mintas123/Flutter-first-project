@@ -12,10 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: "Personal Finance App",
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.amber,
-          textTheme: ThemeData.light().textTheme.copyWith(
+        themeMode: ThemeMode.dark,
+        darkTheme: ThemeData(
+          primarySwatch: Colors.grey,
+          accentColor: Colors.deepOrange,
+          textTheme: ThemeData.dark().textTheme.copyWith(
                 headline6: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 16,
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
               ),
           fontFamily: 'QuickSand',
           appBarTheme: AppBarTheme(
-              textTheme: ThemeData.light().textTheme.copyWith(
+              textTheme: ThemeData.dark().textTheme.copyWith(
                     headline6: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 20,
@@ -44,11 +45,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction('t1', "Shoes", 249.99, DateTime.now()),
-    // Transaction('t2', "Snacks", 6.49, DateTime.now()),
-    // Transaction('t3', "Groceries", 36.99, DateTime.now()),
-    // Transaction('t4', "T-shirt", 59.99, DateTime.now()),
-    // Transaction('t5', "Uber eats", 35.99, DateTime.now()),
+    Transaction('t1', "Shoes", 249.99, DateTime.now()),
+    Transaction(
+        't2', "Snacks", 6.49, DateTime.now().subtract(Duration(days: 1))),
+    Transaction(
+        't3', "Groceries", 36.99, DateTime.now().subtract(Duration(days: 1))),
+    Transaction(
+        't4', "T-shirt", 59.99, DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        't5', "Uber eats", 35.99, DateTime.now().subtract(Duration(days: 5))),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -78,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff282726),
       appBar: AppBar(
         title: Text('Personal Finance App'),
         actions: [

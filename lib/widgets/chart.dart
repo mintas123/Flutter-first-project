@@ -31,23 +31,35 @@ class Chart extends StatelessWidget {
       print(totalSum);
 
       return {
-        'day': DateFormat.E().format(weekDay).substring(0, 1),
+        'day': DateFormat.E().format(weekDay).substring(0, 2),
         'amount': totalSum
       };
-    });
+    }).reversed.toList();
   }
 
   @override
   Widget build(BuildContext context) {
     print(groupedTransactionValues);
     return Card(
+      color: Colors.black,
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        children: groupedTransactionValues
-            .map((data) => ChartBar(data['day'], data['amount'],
-                (data['amount'] as double) / maxSpending))
-            .toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues
+              .map((data) => Flexible(
+                    fit: FlexFit.tight,
+                    child: ChartBar(
+                        data['day'],
+                        data['amount'],
+                        maxSpending == 0.0
+                            ? 0.0
+                            : (data['amount'] as double) / maxSpending),
+                  ))
+              .toList(),
+        ),
       ),
     );
   }
