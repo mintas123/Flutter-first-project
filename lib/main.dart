@@ -63,9 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
         .toList();
   }
 
-  void _addNewTransaction(String title, double amount) {
+  List<Transaction> get _sortedTransactions {
+    var _sortedList = _userTransactions;
+    _sortedList.sort((a, b) => a.dateTime.compareTo(b.dateTime));
+    return _sortedList.reversed.toList();
+  }
+
+  void _addNewTransaction(String title, double amount, DateTime date) {
     final newTrans =
-        Transaction(DateTime.now().toString(), title, amount, DateTime.now());
+        Transaction(DateTime.now().toString(), title, amount, date);
 
     setState(() {
       _userTransactions.add(newTrans);
@@ -97,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: <Widget>[
           Chart(_recentTransactions),
-          TransactionList(_userTransactions),
+          TransactionList(_sortedTransactions),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
