@@ -4,8 +4,7 @@ Following Udemy course lectures from Maximilian Schwarzmuller.
 (Own project will be stored in separate repo, this is for learning purposes **only**)
 
 * Quiz app - learning basics of the Flutter
-* Personal expenses app - figuring out styling *(in development)*
-* Meals app - navigation and routing **(tbd)**
+* Personal expenses app - figuring out styling
+* Meals app - navigation and routing **(in development)**
 * Shop app - bigger project that uses many tools provided by Flutter **tbd**
 * Places app - using device features **tbd**
-
