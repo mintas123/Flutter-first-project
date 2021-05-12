@@ -62,20 +62,20 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   assets:
-    - assets/images/waiting.png
+#    - assets/images/waiting.png
   fonts:
-    - family: OpenSans
-      fonts:
-        - asset: assets/fonts/OpenSans-Regular.ttf
-        - asset: assets/fonts/OpenSans-Bold.ttf
-          weight: 700
-    - family: QuickSand
-      fonts:
-        - asset: assets/fonts/QuickSand-Regular.ttf
-        #        - asset: assets/fonts/QuickSand-Light.ttf
-        #        - asset: assets/fonts/QuickSand-Medium.ttf
-        - asset: assets/fonts/QuickSand-Bold.ttf
-          weight: 700
+#    - family: OpenSans
+#      fonts:
+#        - asset: assets/fonts/OpenSans-Regular.ttf
+#        - asset: assets/fonts/OpenSans-Bold.ttf
+#          weight: 700
+#    - family: QuickSand
+#      fonts:
+#        - asset: assets/fonts/QuickSand-Regular.ttf
+#        #        - asset: assets/fonts/QuickSand-Light.ttf
+#        #        - asset: assets/fonts/QuickSand-Medium.ttf
+#        - asset: assets/fonts/QuickSand-Bold.ttf
+#          weight: 700
 
 
   #   - family: Trajan Pro
