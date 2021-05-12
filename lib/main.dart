@@ -56,6 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
         't5', "Uber eats", 35.99, DateTime.now().subtract(Duration(days: 5))),
   ];
 
+  bool _showChart = false;
+
   List<Transaction> get _recentTransactions {
     return _userTransactions
         .where((element) => element.dateTime
@@ -86,8 +88,16 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final _isLandscape = mediaQuery.orientation == Orientation.landscape;
     return Scaffold(
       backgroundColor: Color(0xff282726),
       appBar: AppBar(
@@ -102,8 +112,45 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          Chart(_recentTransactions),
-          TransactionList(_sortedTransactions),
+          if (_isLandscape)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Show Chart'),
+                Switch(
+                  value: _showChart,
+                  onChanged: (val) {
+                    setState(() {
+                      _showChart = val;
+                    });
+                  },
+                ),
+              ],
+            ),
+          if (!_isLandscape)
+            Container(
+              height: mediaQuery.size.height * 0.3,
+              child: Chart(_recentTransactions),
+            ),
+          if (!_isLandscape)
+            Expanded(
+              child: TransactionList(
+                _sortedTransactions,
+                _deleteTransaction,
+              ),
+            ),
+          if (_isLandscape)
+            _showChart
+                ? Container(
+                    height: mediaQuery.size.height * 0.5,
+                    child: Chart(_recentTransactions),
+                  )
+                : Expanded(
+                    child: TransactionList(
+                      _sortedTransactions,
+                      _deleteTransaction,
+                    ),
+                  ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
