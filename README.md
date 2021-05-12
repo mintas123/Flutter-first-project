@@ -1,4 +1,10 @@
-# flutter_complete_guide
+# flutter projects
+Each project takes it's own branch.
+Following Udemy course lectures from Maximilian Schwarzmuller.
+(Own project will be stored in separate repo, this is for learning purposes **only**)
 
-A new Flutter project, learning Dart& Flutter basics
-
+* Quiz app - learning basics of the Flutter
+* Personal expenses app - figuring out styling
+* Meals app - navigation and routing **(in development)**
+* Shop app - bigger project that uses many tools provided by Flutter **tbd**
+* Places app - using device features **tbd**
