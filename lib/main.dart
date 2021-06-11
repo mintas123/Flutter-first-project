@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/categories_screen.dart';
+import 'package:flutter_complete_guide/category_meals_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,31 +9,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: "Meals App",
-        themeMode: ThemeMode.dark,
-        darkTheme: ThemeData(
-          primarySwatch: Colors.grey,
-          accentColor: Colors.deepOrange,
+        theme: ThemeData(
+          primarySwatch: Colors.pink,
+          accentColor: Colors.amber,
+          canvasColor: Color.fromRGBO(255, 254, 229, 1),
+          fontFamily: 'Raleway',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                bodyText2: TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1),
+                ),
+                bodyText1: TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1),
+                ),
+                headline6: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'RobotoCondensed',
+                  // fontWeight: FontWeight.w300,
+                ),
+              ),
         ),
-        home: MyHomePage());
-  }
-}
+        // home: CategoriesScreen(),
 
-class MyHomePage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MyHomePageState();
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xff282726),
-      appBar: AppBar(
-        title: Text('Meals App'),
-      ),
-      body: Text('Show Chart'),
+      routes: {
+          '/':  (ctx) => CategoriesScreen(), // same thing as home: x() above:
+          CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen()
+      },
     );
   }
 }
